@@ -7,11 +7,11 @@ import { IoCloseOutline } from "react-icons/io5";
 const Header = () => {
   return (
     <nav>
-      <div className="container nav__container">
+      <div className='nav-container'>
         <Link to="/">
           Art Gallery
         </Link>
-        <ul>
+        <ul className="nav-menu">
           <li><Link to="/profile">Jane Doe</Link></li>
           <li><Link to="/upload">Upload artwork</Link></li>
           <li><Link to="/artists">Artists</Link></li>

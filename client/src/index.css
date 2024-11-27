@@ -3,8 +3,48 @@
 
 body {
     font-family: "Montserrat";
+    display: grid;
 }
 
-img {
+/* img {
     display: block;
+} */
+
+a {
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    align-content: end;
+}
+
+li {
+    padding: 1rem;
+}
+
+.nav-container {
+    width: 100vw;
+    height: 8vh;
+    position: sticky-top;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    margin: 10px;
+}
+
+.btn {
+    display: inline-block;
+    width: fit-content;
+    padding: 0.5rem;
+}
+
+.nav-toggle-btn {
+    display: none;
 }

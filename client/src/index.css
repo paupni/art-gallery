@@ -4,6 +4,9 @@
 body {
     font-family: "Montserrat";
     display: grid;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(248, 248, 248);
 }
 
 /* img {
@@ -11,7 +14,7 @@ body {
 } */
 
 a {
-    color: rgb(92, 92, 92);
+    color: rgb(53, 53, 53);
     text-decoration: none;
 }
 
@@ -23,6 +26,15 @@ ul {
 
 li {
     padding: 1rem;
+}
+
+footer {
+    width: 100vw;
+    height: 8vh;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    background-color: rgba(236, 236, 236, 0.5);
 }
 
 .nav-container {

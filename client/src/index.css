@@ -32,7 +32,6 @@ footer {
     width: 100vw;
     height: 8vh;
     bottom: 0;
-    position: fixed;
     text-align: center;
     background-color: rgba(236, 236, 236, 0.5);
 }
@@ -44,10 +43,11 @@ section {
 .nav-container {
     width: 100vw;
     height: 8vh;
-    position: sticky-top;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgba(236, 236, 236, 0.8);
 }
 
 .nav-menu {
@@ -78,4 +78,11 @@ section {
 
 .error-page {
     text-align: center;
+}
+
+.artworks {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

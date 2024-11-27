@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
+import Artworks from './components/Artworks';
 import ErrorPage from './pages/error/ErrorPage';
-import Home from './pages/gallery/Home';
 import ArtworkDetails from './pages/gallery/ArtworkDetails';
 import Register from './pages/login/Register';
 import Login from './pages/login/Login';
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-        {index: true, element: <Home />},
+        {index: true, element: <Artworks />},
         {path: "artwork/:id", element: <ArtworkDetails />},
         {path: "register", element: <Register />},
         {path: "login", element: <Login />},

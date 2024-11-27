@@ -37,6 +37,10 @@ footer {
     background-color: rgba(236, 236, 236, 0.5);
 }
 
+section {
+    margin-top: 6rem;
+}
+
 .nav-container {
     width: 100vw;
     height: 8vh;
@@ -59,4 +63,19 @@ footer {
 
 .nav-toggle-btn {
     display: none;
+}
+
+.btn-basic {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 16px;
+    font-size: 14px;
+    border: 1px solid;
+    border-radius: 6px;
+    color: #4d4d4d;
+    background-color: #fafbfc;
+}
+
+.error-page {
+    text-align: center;
 }

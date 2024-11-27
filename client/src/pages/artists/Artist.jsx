@@ -1,10 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import Avatar from '../../assets/1.jpg'
 
 const Artist = () => {
   return (
-    <div>
-        Artist
-    </div>
+    <Link to={`/posts/users/`}>
+        <div className='artist-avatar'>
+            <img src={Avatar} alt='' />
+        </div>
+        <div className='artist-details'>
+            <h5>Artist: Jane Doe</h5>
+        </div>
+    </Link>
   )
 }
 

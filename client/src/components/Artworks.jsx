@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ArtworkDetails from '../pages/gallery/ArtworkDetails'
+import Artwork from '../pages/gallery/Artwork'
 
 import Thumb1 from '../assets/artwork-1.jpg';
 import Thumb2 from '../assets/artwork-2.jpg';
@@ -40,7 +40,7 @@ const Artworks = () => {
         <div className='artworks'>
             {
                 artworks.map(({id, thumb, category, title, desc, authorID}) => 
-                    <ArtworkDetails key={id} artworkID={id} thumb={thumb} category={category} title={title} desc={desc} authorID={authorID} />)
+                    <Artwork key={id} artworkID={id} thumb={thumb} category={category} title={title} desc={desc} authorID={authorID} />)
             }
         </div>
     )

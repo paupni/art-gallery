@@ -9,7 +9,7 @@ const Artwork = ({id, thumb, category, title, desc, authorID}) => {
         <img src={thumb} alt={title} />
       </div>
       <div>
-        <Link to={`/posts/${id}`}>
+        <Link to={`/artwork/${id}`}>
           <h3>{title}</h3>
         </Link>
       </div>

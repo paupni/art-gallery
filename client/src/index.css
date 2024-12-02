@@ -50,7 +50,8 @@ h5 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(236, 236, 236, 0.90);
+    background-color: rgba(236, 236, 236, 0.80);
+    backdrop-filter: blur(12px);
 }
 
 .nav-menu {

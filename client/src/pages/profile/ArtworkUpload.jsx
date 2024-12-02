@@ -2,7 +2,7 @@ import React from 'react'
 
 const ArtworkUpload = () => {
   return (
-    <div>
+    <div className='container'>
       Upload
     </div>
   )

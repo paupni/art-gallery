@@ -5,9 +5,6 @@ import Avatar from '../../assets/1.jpg'
 const Artist = () => {
   return (
     <Link to={`/posts/users/`}>
-        <div className='artist-avatar'>
-            <img src={Avatar} alt='' />
-        </div>
         <div className='artist-details'>
             <h5>Artist: Jane Doe</h5>
         </div>

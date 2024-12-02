@@ -9,7 +9,7 @@ body {
 }
 
 img {
-    width: 200px
+    width: 100%;
 }
 
 a {
@@ -46,7 +46,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(236, 236, 236, 0.8);
+    background-color: rgba(236, 236, 236, 0.90);
 }
 
 .nav-menu {
@@ -79,16 +79,25 @@ section {
     text-align: center;
 }
 
+.container {
+    margin-top: 4rem;
+    padding: 1rem;
+}
+
 .artworks {
-    margin-top: 5rem;
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .artwork {
-    width: 300px;
-    display: block;
     padding: 1rem;
     margin: 1rem;
     background: white;
+    width: auto;
+    height: max-content;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
 .artwork:hover {

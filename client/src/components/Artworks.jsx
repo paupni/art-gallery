@@ -11,7 +11,7 @@ const artworks = [
         thumb: Thumb1,
         category: 'painting',
         title: 'title1',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         artistID: 1,
     },
     {
@@ -19,7 +19,7 @@ const artworks = [
         thumb: Thumb2,
         category: 'sculpture',
         title: 'title2',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         artistID: 2,
     },
     {
@@ -27,8 +27,24 @@ const artworks = [
         thumb: Thumb3,
         category: 'video',
         title: 'title3',
-        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         artistID: 3,
+    },
+    {
+        id: '4',
+        thumb: Thumb3,
+        category: 'video',
+        title: 'title3',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        artistID: 3,
+    },
+    {
+        id: '5',
+        thumb: Thumb1,
+        category: 'video',
+        title: 'title3',
+        desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+        artistID: 1,
     },
 ]
 
@@ -37,7 +53,7 @@ const Artworks = () => {
     const [artwork, setArtwork] = useState(artworks);
 
     return (
-        <div className='artworks'>
+        <div className='container artworks'>
             {
                 artworks.map(({id, thumb, category, title, desc, authorID}) => 
                     <Artwork key={id} artworkID={id} thumb={thumb} category={category} title={title} desc={desc} authorID={authorID} />)

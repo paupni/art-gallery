@@ -39,6 +39,10 @@ section {
     margin-top: 6rem;
 }
 
+h5 {
+    padding: 1rem;
+}
+
 .nav-container {
     width: 100vw;
     height: 8vh;
@@ -102,4 +106,16 @@ section {
 
 .artwork:hover {
     box-shadow: 0 1rem 2rem rgba(248, 248, 248, 0.1);
+}
+
+.artist-avatar {
+    display: flex;
+    
+}
+
+.avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
 }

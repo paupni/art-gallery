@@ -15,8 +15,8 @@ const ArtworkDetails = () => {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quos possimus quisquam repellat suscipit commodi consectetur eum provident incidunt quasi! Ab, fuga voluptas inventore praesentium repudiandae id dignissimos odit explicabo?</p>
           <div className='btn-artwork-details'>
           <Artist />
-          <Link to={`/artworks/edit`} className='btn btn-artwork-edit'>Edit</Link>
-          <Link to={`/artworks/delete`} className='btn btn-artwork-delete'>Delete</Link>
+          <Link to={`/artwork/edit`} className='btn btn-artwork-edit'>Edit</Link>
+          <Link to={`/artwork/delete`} className='btn btn-artwork-delete'>Delete</Link>
         </div>
       </div>
     </section>

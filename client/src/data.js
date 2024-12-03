@@ -39,7 +39,7 @@ const artworks = [
         id: '5',
         thumb: Thumb1,
         category: 'video',
-        title: 'title3',
+        title: 'lalalala',
         desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
         artistID: 1,
     },

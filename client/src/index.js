@@ -15,6 +15,7 @@ import ArtworkEdit from './pages/profile/ArtworkEdit';
 import ArtworkDelete from './pages/profile/ArtworkDelete';
 import Logout from './pages/login/Logout';
 import ArtistArtwork from './pages/artists/ArtistArtwork';
+import Dashboard from './pages/profile/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -29,10 +30,11 @@ const router = createBrowserRouter([
         {path: "profile/:id", element: <ArtistProfile />},
         {path: "artists", element: <Artists />},
         {path: "upload", element: <ArtworkUpload />},
-        {path: "artworks/:id/edit", element: <ArtworkEdit />},
-        {path: "artworks/:id/delete", element: <ArtworkDelete />},
+        {path: "artwork/:id/edit", element: <ArtworkEdit />},
+        {path: "artwork/:id/delete", element: <ArtworkDelete />},
         {path: "logout", element: <Logout />},
         {path: "artworks/artist/:id", element: <ArtistArtwork />},
+        {path: "myposts/:id", element: <Dashboard />},
     ]
   }
 ])

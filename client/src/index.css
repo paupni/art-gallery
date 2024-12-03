@@ -163,3 +163,14 @@ h5 {
     width: 50%;
     margin: 2rem;
 }
+
+.form-error-mgs {
+    background-color: #ff5050;
+    color: white;
+    padding: 0.6rem 1rem;
+
+}
+
+.register {
+    background-color: white;
+}

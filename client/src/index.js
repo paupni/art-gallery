@@ -14,6 +14,7 @@ import ArtworkUpload from './pages/profile/ArtworkUpload';
 import ArtworkEdit from './pages/profile/ArtworkEdit';
 import ArtworkDelete from './pages/profile/ArtworkDelete';
 import Logout from './pages/login/Logout';
+import ArtistArtwork from './pages/artists/ArtistArtwork';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
         {path: "artworks/:id/edit", element: <ArtworkEdit />},
         {path: "artworks/:id/delete", element: <ArtworkDelete />},
         {path: "logout", element: <Logout />},
+        {path: "artworks/artist/:id", element: <ArtistArtwork />},
     ]
   }
 ])

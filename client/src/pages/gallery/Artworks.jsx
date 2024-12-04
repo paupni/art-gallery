@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Artwork from '../pages/gallery/Artwork'
-import data from '../data'
+import Artwork from './Artwork'
+import data from '../../data'
 
 const Artworks = () => {
     const [artworks, setArtworks] = useState(data);

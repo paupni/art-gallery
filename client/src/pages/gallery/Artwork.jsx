@@ -20,3 +20,4 @@ const Artwork = ({id, thumb, category, title, desc, authorID}) => {
 }
 
 export default Artwork
+

@@ -6,10 +6,10 @@ const Login = () => {
     email: '',
     password: '',
   })
-
+  
   const changeInputHandler = (e) => {
     setArtistData(prevState => {
-      return {...prevState, [e.target.name]: e.target}
+      return ({...prevState, [e.target.name]: e.target.value})
     })
   }
 

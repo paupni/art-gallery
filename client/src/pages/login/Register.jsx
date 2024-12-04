@@ -9,10 +9,12 @@ const Register = () => {
     password: '',
     password2: '',
   })
-
+  
   const changeInputHandler = (e) => {
+    console.log(e);
+    
     setArtistData(prevState => {
-      return {...prevState, [e.target.name]: e.target}
+      return {...prevState, [e.target.name]: e.target.value}
     })
   }
 

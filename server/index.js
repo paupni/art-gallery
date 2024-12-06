@@ -18,12 +18,15 @@ app.use("/api/artworks", artworkRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
+// app.listen(process.env.PORT, () =>
+//   console.log(`Server running on port ${process.env.PORT}`)
+// );
+
 connect(process.env.MONGO_URI)
   .then(
-    app.listen(5000, () =>
-      console.log(`Server started on port ${process.env.PORT}`)
+    // @ts-ignore
+    app.listen(process.env.PORT, () =>
+      console.log(`Server running on port ${process.env.PORT}`)
     )
   )
-  .catch((err) => {
-    console.log(err);
-  });
+  .catch((error) => console.log(error));

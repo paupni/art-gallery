@@ -7,6 +7,7 @@ const artistSchema = new Schema({
   password: { type: String, required: true },
   avatar: { type: String },
   artworks: { type: Number, default: 0 },
+  bio: { type: String },
 });
 
 module.exports = model("Artist", artistSchema);

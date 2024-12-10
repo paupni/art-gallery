@@ -8,6 +8,7 @@ const {
   editArtist,
   getArtists,
 } = require("../controllers/artistControllers");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.post("/register", registerArtist);
 router.post("/login", loginArtist);
 router.get("/:id", getArtist);
 router.get("/", getArtists);
-router.post("/change-avatar", changeAvatar);
-router.patch("/edit-artist", editArtist);
+router.post("/change-avatar", authMiddleware, changeAvatar);
+router.patch("/edit-artist", authMiddleware, editArtist);
 
 module.exports = router;

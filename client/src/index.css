@@ -40,7 +40,7 @@ section {
 }
 
 h5 {
-    padding: 1rem;
+    /* padding: 1rem; */
 }
 
 .nav-container {
@@ -73,7 +73,6 @@ h5 {
     color: #242424;
     background-color: #bdbdbd;
 }
-
 
 .nav-toggle-btn {
     display: none;
@@ -124,7 +123,7 @@ h5 {
 }
 
 .artist-avatar {
-    display: flex;
+    display: block;
     
 }
 

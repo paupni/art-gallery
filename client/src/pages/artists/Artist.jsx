@@ -1,13 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Avatar from '../../assets/1.jpg'
+import axios from 'axios'
+import { DateTime } from 'luxon'
 
-const Artist = () => {
+const Artist = ({artistId, createdAt}) => {
+  const [artist, setArtist] = useState({})
+  
+  
+  useEffect(() => {
+    const getArtist = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/artists/${artistId}`);
+        setArtist(response?.data);
+      } catch (err) {
+        console.log(err);
+        
+      }
+    }
+
+    getArtist()
+  }, [artistId])
+
+  
   return (
-    <Link to={`/artworks/artist/`}>
+    <Link to={`/artists/${artistId}`}>
         <div className='artist-avatar'>
-            <img className='avatar' src={Avatar} alt='' />
-            <h5>Artist: Jane Doe</h5>
+            <img className='avatar' src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${artist?.avatar}`} alt='' />
+            <h5>Artist: {artist.name} {artist.surname}</h5>
+            <p>Created at: {DateTime.now(createdAt).toFormat('MM-dd-yyyy')}</p>
         </div>
     </Link>
   )

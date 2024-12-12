@@ -13,8 +13,8 @@ const ArtistProfile = () => {
   const [email, setEmail] = useState("");
   const [changePassword, setChangePassword] = useState(false);
   const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmedNewPassword, setConfirmNewPassword] = useState("");
+  const [newPassword1, setNewPassword1] = useState("");
+  const [newPassword2, setNewPassword2] = useState("");
   const [error, setError] = useState("");
 
   const [isAvatarTouched, setIsAvatarTouched] = useState(false);
@@ -77,8 +77,8 @@ const ArtistProfile = () => {
       artistData.set("bio", bio);
       artistData.set("email", email);
       artistData.set("currentPassword", currentPassword);
-      artistData.set("newPassword", newPassword);
-      artistData.set("confirmedNewPassword", confirmedNewPassword);
+      artistData.set("newPassword1", newPassword1);
+      artistData.set("newPassword2", newPassword2);
       artistData.set("changePassword", changePassword);
 
       const response = await axios.patch(
@@ -192,16 +192,16 @@ const ArtistProfile = () => {
           <input
             type="password"
             placeholder="New Password"
-            name="newPassword"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            name="newPassword1"
+            value={newPassword1}
+            onChange={(e) => setNewPassword1(e.target.value)}
           />
           <input
             type="password"
             placeholder="Confirm New Password"
-            name="confirmNewPassword"
-            value={confirmedNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
+            name="newPassword2"
+            value={newPassword2}
+            onChange={(e) => setNewPassword2(e.target.value)}
           />
           <button type="submit" className="btn btn-form">
             Update

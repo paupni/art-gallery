@@ -153,15 +153,15 @@ const editArtist = async (req, res, next) => {
       bio,
       email,
       currentPassword,
-      newPassword,
-      confirmedNewPassword,
+      newPassword1,
+      newPassword2,
       changePassword,
     } = req.body;
 
     let newInfo;
 
     if (changePassword === "true") {
-      if (!name || !surname || !email || !currentPassword || !newPassword) {
+      if (!name || !surname || !email || !currentPassword || !newPassword1) {
         return next(new HttpError("Fill in all fields", 418));
       }
 
@@ -183,12 +183,12 @@ const editArtist = async (req, res, next) => {
         return next(new HttpError("Invalid current password", 418));
       }
 
-      if (newPassword !== confirmedNewPassword) {
+      if (newPassword1 !== newPassword2) {
         return next(new HttpError("New passwords do not match"), 418);
       }
 
       const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(newPassword, salt);
+      const hash = await bcrypt.hash(newPassword1, salt);
 
       newInfo = await Artist.findByIdAndUpdate(
         req.artist.id,

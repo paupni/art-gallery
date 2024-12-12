@@ -7,31 +7,28 @@ const { v4: uuid } = require("uuid");
 const Artist = require("../models/artistModel");
 const HttpError = require("../models/errorModel");
 
-// ========================== REGISTER A NEW ARTIST
-// POST : api/artists/register
-// UNPROTECTED
 const registerArtist = async (req, res, next) => {
   try {
     const { name, surname, email, password, password2, bio } = req.body;
     if (!name || !surname || !email || !password) {
-      return next(new HttpError("Fill in all fields", 422));
+      return next(new HttpError("Fill in all fields", 418));
     }
 
     const newEmail = email.toLowerCase();
 
     const emailExist = await Artist.findOne({ email: newEmail });
     if (emailExist) {
-      return next(new HttpError("Artist already exists", 422));
+      return next(new HttpError("Artist already exists", 418));
     }
 
     if (password.length < 6) {
       return next(
-        new HttpError("Password should be at least 6 characters.", 422)
+        new HttpError("Password should be at least 6 characters.", 418)
       );
     }
 
     if (password != password2) {
-      return next(new HttpError("Passwords do not match", 422));
+      return next(new HttpError("Passwords do not match", 418));
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -46,30 +43,27 @@ const registerArtist = async (req, res, next) => {
 
     res.status(201).json(`New artist ${newArtist.name} registered`);
   } catch (err) {
-    return next(new HttpError("Artist registration failed", 422));
+    return next(new HttpError("Artist registration failed", 418));
   }
 };
 
-// ========================== LOGIN A REGISTERED ARTIST
-// POST : api/artists/login
-// UNPROTECTED
 const loginArtist = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return next(new HttpError("Fill in all fields", 422));
+      return next(new HttpError("Fill in all fields", 418));
     }
     const newEmail = email.toLowerCase();
 
     const artist = await Artist.findOne({ email: newEmail });
 
     if (!artist) {
-      return next(new HttpError("Authentication failed", 422));
+      return next(new HttpError("Authentication failed", 418));
     }
 
     const comparePass = await bcrypt.compare(password, artist.password);
     if (!comparePass) {
-      return next(new HttpError("Authentication failed", 422));
+      return next(new HttpError("Authentication failed", 418));
     }
 
     const { _id: id, name } = artist;
@@ -80,14 +74,11 @@ const loginArtist = async (req, res, next) => {
     res.status(200).json({ token, id, name });
   } catch (err) {
     return next(
-      new HttpError("Login failed. Pease check your credentials", 422)
+      new HttpError("Login failed. Pease check your credentials", 418)
     );
   }
 };
 
-// ========================== ARTIST PROFILE
-// GET : api/artists/:id
-// PROTECTED
 const getArtist = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -101,19 +92,14 @@ const getArtist = async (req, res, next) => {
   }
 };
 
-// ========================== CHANGE ARTIST AVATAR (profile picture)
-// POST : api/artists/change-avatar
-// PROTECTED
 const changeAvatar = async (req, res, next) => {
   try {
     if (!req.files.avatar) {
-      return next(new HttpError("Please choose an image", 422));
+      return next(new HttpError("Please choose an image", 418));
     }
 
-    // find artist from database
     const artist = await Artist.findById(req.artist.id);
 
-    // delete the old avatar if exist
     if (artist.avatar) {
       fs.unlink(path.join(__dirname, "..", "uploads", artist.avatar), (err) => {
         if (err) {
@@ -124,10 +110,9 @@ const changeAvatar = async (req, res, next) => {
 
     const { avatar } = req.files;
     if (avatar.size > 5000000) {
-      return next(new HttpError("Profile picture too big", 422));
+      return next(new HttpError("Profile picture too big", 418));
     }
 
-    // change the name of the file
     let fileName;
     fileName = avatar.name;
     let splittedFileName = fileName.split(".");
@@ -150,7 +135,7 @@ const changeAvatar = async (req, res, next) => {
           { new: true }
         );
         if (!updatedAvatar) {
-          return next(new HttpError("Avatar could not be changed", 422));
+          return next(new HttpError("Avatar could not be changed", 418));
         }
         res.status(200).json(updatedAvatar);
       }
@@ -160,9 +145,6 @@ const changeAvatar = async (req, res, next) => {
   }
 };
 
-// ==========================  EDIT ARTIST DETAILS (from profile)
-// PATCH : api/artists/edit-artist
-// PROTECTED
 const editArtist = async (req, res, next) => {
   try {
     const {
@@ -173,47 +155,67 @@ const editArtist = async (req, res, next) => {
       currentPassword,
       newPassword,
       confirmedNewPassword,
+      changePassword,
     } = req.body;
-    if (!name || !surname || !email || !currentPassword || !newPassword) {
-      return next(new HttpError("Fill in all fields", 422));
+
+    let newInfo;
+
+    if (changePassword === "true") {
+      if (!name || !surname || !email || !currentPassword || !newPassword) {
+        return next(new HttpError("Fill in all fields", 418));
+      }
+
+      const artist = await Artist.findById(req.artist.id);
+      if (!artist) {
+        return next(new HttpError("Artist not found", 403));
+      }
+
+      const emailExist = await Artist.findOne({ email });
+      if (emailExist && emailExist._id != req.artist.id) {
+        return next(new HttpError("Email already exist", 418));
+      }
+
+      const validateArtistPassword = await bcrypt.compare(
+        currentPassword,
+        artist.password
+      );
+      if (!validateArtistPassword) {
+        return next(new HttpError("Invalid current password", 418));
+      }
+
+      if (newPassword !== confirmedNewPassword) {
+        return next(new HttpError("New passwords do not match"), 418);
+      }
+
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(newPassword, salt);
+
+      newInfo = await Artist.findByIdAndUpdate(
+        req.artist.id,
+        { name, surname, bio, email, password: hash },
+        { new: true }
+      );
+    } else {
+      if (!name || !surname || !email) {
+        return next(new HttpError("Fill in all fields", 418));
+      }
+
+      const artist = await Artist.findById(req.artist.id);
+      if (!artist) {
+        return next(new HttpError("Artist not found", 403));
+      }
+
+      const emailExist = await Artist.findOne({ email });
+      if (emailExist && emailExist._id != req.artist.id) {
+        return next(new HttpError("Email already exist", 418));
+      }
+
+      newInfo = await Artist.findByIdAndUpdate(
+        req.artist.id,
+        { name, surname, bio, email },
+        { new: true }
+      );
     }
-
-    //get artist from database
-    const artist = await Artist.findById(req.artist.id);
-    if (!artist) {
-      return next(new HttpError("Artist not found", 403));
-    }
-
-    //make sure new email doesn't already exist
-    const emailExist = await Artist.findOne({ email });
-    if (emailExist && emailExist._id != req.artist.id) {
-      return next(new HttpError("Email already exist", 422));
-    }
-
-    //compare current pass to db pass
-    const validateArtistPassword = await bcrypt.compare(
-      currentPassword,
-      artist.password
-    );
-    if (!validateArtistPassword) {
-      return next(new HttpError("Invalid current password", 422));
-    }
-
-    //compare new passwords
-    if (newPassword !== confirmedNewPassword) {
-      return next(new HttpError("New passwords do not match"), 422);
-    }
-
-    // hash new pass
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(newPassword, salt);
-
-    // update artist info in database
-    const newInfo = await Artist.findByIdAndUpdate(
-      req.artist.id,
-      { name, surname, bio, email, password: hash },
-      { new: true }
-    );
 
     res.status(200).json(newInfo);
   } catch (err) {
@@ -221,9 +223,6 @@ const editArtist = async (req, res, next) => {
   }
 };
 
-// ========================== GET ARTISTS
-// GET : api/artists/
-// UNPROTECTED
 const getArtists = async (req, res, next) => {
   try {
     const artists = await Artist.find().select("-password");

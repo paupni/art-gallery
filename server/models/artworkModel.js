@@ -5,7 +5,7 @@ const artworkSchema = new Schema(
     title: { type: String, required: true },
     category: {
       type: String,
-      enum: ["painting", "sculpture", "video", "unclassyfied"],
+      enum: ["painting", "sculpture", "video", "unclassified"],
       message: "Value is not supported",
     },
     description: { type: String, required: true },

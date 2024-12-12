@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import Loader from '../../components/Loader'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import Loader from "../../components/Loader";
 
 const Artists = () => {
   const [artists, setArtists] = useState([]);
@@ -9,48 +9,60 @@ const Artists = () => {
 
   useEffect(() => {
     const getArtists = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/artists`)
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/artists`
+        );
         setArtists(response.data);
       } catch (err) {
         console.log(err);
-        
       }
-      setIsLoading(false)
-    }
-    getArtists()
-  }, [])
-  
-  if(isLoading) {
-    return <Loader/>
+      setIsLoading(false);
+    };
+    getArtists();
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
-    <section className='container'>
-        {artists.length > 0 ? <div className='artists'>
-            {
-              artists.map(({_id: id, avatar, name, artworks}) => {
-                return (
-                  <div key={id}>
-                    <Link to={`/artists/${id}`}>
-                      <div>
-                        <img className='avatar' src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${avatar}`} alt={`This is ${name}`} />
-                      </div>
-                      <div>
-                        <h4>{name}</h4>
-                        <p>Uploaded artworks: {artworks}</p>
-                      </div>
-                    </Link>
-                    <Link to={`/artworks/artists/${id}`}>Artworks</Link>
+    <div className="page ">
+      {artists.length > 0 ? (
+        <div className="container artists">
+          {artists.map(({ _id: id, avatar, name, surname, artworks }) => {
+            return (
+              <div className="artist" key={id}>
+                <Link className="artist-card" to={`/artists/${id}`}>
+                  <div>
+                    {avatar ? (
+                      <img
+                        className="artist-avatar-2"
+                        src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${avatar}`}
+                        alt={`This is ${name}`}
+                      />
+                    ) : (
+                      <div class="artist-avatar-no-image" />
+                    )}
                   </div>
-                  )
-              })
-            }
-          </div> : <h2>No artists found</h2>
-        }
-    </section>
-  )
-}
+                  <h3>
+                    {name} {surname}
+                  </h3>
+                  <p>Uploaded artworks: {artworks}</p>
+                </Link>
+                <Link className="btn" to={`/artworks/artists/${id}`}>
+                  Artworks
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <h2>No artists found</h2>
+      )}
+    </div>
+  );
+};
 
-export default Artists
+export default Artists;

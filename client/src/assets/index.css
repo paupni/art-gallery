@@ -1,0 +1,516 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+body {
+  background-color: rgb(248, 248, 248);
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #65635f;
+  /* display: grid; */
+  margin: 0;
+  padding-top: 70px;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  border: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+  padding: 0.6em 0;
+  margin: 0;
+}
+
+h5 {
+  font-size: 1.1em;
+  font-weight: 500;
+  padding: 0.5em 0;
+  margin: 0;
+}
+
+a {
+  color: #65635f;
+  text-decoration: none;
+}
+
+form {
+  width: 50em;
+  display: grid;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 2em;
+  margin: 1em 0;
+}
+
+input,
+textarea,
+select {
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid #ccc;
+  resize: vertical;
+}
+
+input[type="file"] {
+}
+
+textarea {
+  height: 200px;
+}
+
+.page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+}
+
+.container {
+  /* padding: 2rem; */
+}
+
+.footer {
+  width: 100%;
+  height: 70px;
+  background-color: rgba(236, 236, 236);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  background-color: rgba(236, 236, 236);
+}
+
+.nav-container {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+
+ul.nav-menu {
+  list-style: none;
+  display: flex;
+}
+
+.nav-menu li {
+  padding: 0.8rem;
+}
+
+.nav-menu li:hover {
+  background-color: rgb(244, 244, 240);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
+}
+
+.logo {
+  padding: 0.8rem;
+}
+
+.nav-menu {
+  display: flex;
+  /* margin: 10px; */
+}
+
+.nav-toggle-btn {
+  display: none;
+}
+
+.error-page {
+  margin: auto;
+}
+
+/* =========================== ALL ARTWORKS PAGE ==========================*/
+
+.artworks {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 1em 0;
+  justify-content: center;
+}
+
+.artwork {
+  margin: 1em;
+  background: white;
+  width: 400px;
+  height: 480px;
+  display: inline-block;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+}
+
+.artwork:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.artwork-thumb {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.artwork-desc {
+  padding: 1em;
+}
+
+.artwork-artist {
+  padding: 0 1em;
+}
+
+/* =========================== ALL ARTISTS PAGE ==========================*/
+
+.artists {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 1em 0;
+  justify-content: center;
+}
+
+.artist {
+  padding: 1.5em 0;
+  margin: 1em;
+  background: white;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  align-items: center;
+  transition: all 0.3s ease-out;
+}
+
+.artist:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.artist-avatar-2 {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.artist-avatar-no-image {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-color: #dadada;
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+/* =========================== CATEGORIES ==========================*/
+
+.categories {
+  justify-content: center;
+  padding-top: 2em;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 100px;
+  margin: 1em;
+  background-color: #d6d6d6;
+  cursor: pointer;
+  padding: 1em 2em;
+  font-size: 14px;
+  border: 1px;
+  transition: all 0.3s ease-out;
+}
+
+.category:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================== ARTWORK DETAILS PAGE ==========================*/
+
+.artwork-details {
+}
+
+.artwork-details-left {
+  background-color: #ececec;
+  flex: 40%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.artwork-details-right {
+  background-color: #fff;
+  flex: 60%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.artwork-details-left-inner {
+  /* width: 900px; */
+  display: flex;
+  align-items: center;
+}
+.artwork-details-right-inner {
+  /* width: 900px; */
+}
+
+.artwork-details-content {
+  margin: 150px 50px 50px 150px;
+}
+
+.artwork-details-content .btn-artwork-edit {
+  margin-left: 0;
+}
+
+.artwork-details-content > p {
+  padding: 1em 0;
+}
+
+.artwork-details-image {
+  height: 800px;
+  width: 800px;
+  object-fit: contain;
+}
+
+/* =========================== PROFILE EDIT ==========================*/
+
+.artist-profile {
+}
+
+.artist-profile-avatar {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.artist-profile-no-avatar {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  background-color: #dedede;
+}
+
+.artist-profile-file-input {
+  display: none;
+}
+
+.artist-profile-avatar-form {
+  display: flex;
+}
+
+.artist-profile-avatar-form-buttons {
+  width: 200px;
+  margin-left: 50px;
+}
+
+/* =========================== ADMIN PANEL ==========================*/
+
+.admin-panel {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+
+.admin-panel-item {
+  display: flex;
+  margin-top: 1.5em;
+  background-color: #ebebeb;
+  align-items: center;
+}
+.admin-panel-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.admin-panel-buttons {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5em;
+}
+
+.admin-panel-desc {
+  padding-left: 1.5em;
+  min-width: 600px;
+}
+
+/* =========================== ARTIST BIO ==========================*/
+
+.artist-bio {
+  display: flex;
+}
+
+.artist-bio-left {
+  background-color: #ececec;
+  flex: 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.artist-bio-right {
+  background-color: #fff;
+  flex: 70%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.artist-bio-left-inner {
+  display: flex;
+  align-items: center;
+}
+.artist-bio-right-inner {
+}
+
+.artist-bio-content {
+  margin: 150px 50px 50px 150px;
+}
+
+.artist-bio-content > p {
+  padding: 1em 0;
+}
+
+.artist-bio-image {
+  width: 20em;
+  height: 20em;
+  object-fit: cover;
+}
+.artist-bio-no-image {
+  width: 20em;
+  height: 20em;
+  background-color: #c9c9c9;
+}
+
+/* =========================== ARTIST VIGNETTE ON THE HOME PAGE (ARTWORKS) ==========================*/
+
+.vignette {
+  display: flex;
+  padding: 1em 0;
+  align-items: center;
+}
+
+.artist-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artist-desc {
+  padding-left: 1em;
+  font-size: small;
+}
+
+/* =================== BUTTONS ====================== */
+
+.btn {
+  display: inline-block;
+  width: fit-content;
+  cursor: pointer;
+  padding: 1em 2em;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  background-color: #bdbdbd;
+  opacity: 0.7;
+  transition: all 0.3s ease-out;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+.btn-artwork-edit {
+  background-color: #52bfff;
+  margin: 1em;
+}
+
+.btn-artwork-delete {
+  background-color: #ff5050;
+  margin: 1em 0;
+}
+
+.btn-form {
+  margin-top: 1em;
+}
+
+.btn-profile {
+  margin-top: 1em;
+  width: 160px;
+}
+
+.btn-profile-confirm {
+  background-color: limegreen;
+}
+
+.form-error-mgs {
+  background-color: #ff5050;
+  color: white;
+  padding: 0.6rem 1rem;
+}
+
+.login,
+.register,
+.artwork-upload,
+.artist-profile {
+  margin: 0 auto;
+  padding: 1em 0;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.quill {
+  background-color: #ffffff;
+  margin: 1em 0;
+}
+
+.ql-editor {
+  overflow-y: scroll;
+  height: 200px !important;
+}
+
+.modal-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.modal-buttons > .btn-artwork-delete {
+  margin-right: 4.5em;
+}
+
+.modal-title {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.checkbox-label {
+  font-size: 0.9em;
+}

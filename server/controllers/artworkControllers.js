@@ -5,15 +5,12 @@ const fs = require("fs");
 const path = require("path");
 const { v4: uuid } = require("uuid");
 
-// ============================= UPLOAD AN ARTWORK
-// POST : api/artworks
-// PROTECTED
 const uploadArtwork = async (req, res, next) => {
   try {
     let { title, category, description } = req.body;
 
     if (!title || !category || !description || !req.files) {
-      return next(new HttpError("Fill in all fields and choose thumb", 422));
+      return next(new HttpError("Fill in all fields and choose thumb", 418));
     }
 
     const { thumb } = req.files;
@@ -46,7 +43,7 @@ const uploadArtwork = async (req, res, next) => {
           });
 
           if (!newArtwork) {
-            return next(new HttpError("Artwork cannot be created", 422));
+            return next(new HttpError("Artwork cannot be created", 418));
           }
 
           const currentArtist = await Artist.findById(req.artist.id);
@@ -65,9 +62,6 @@ const uploadArtwork = async (req, res, next) => {
   }
 };
 
-// ============================= GET ALL ARTWORKS
-// GET : api/artworks
-// PROTECTED
 const getArtworks = async (req, res, next) => {
   try {
     const artworks = await Artwork.find().sort({ updatedAt: -1 });
@@ -77,9 +71,6 @@ const getArtworks = async (req, res, next) => {
   }
 };
 
-// ============================= GET SINGLE ARTWORK
-// GET : api/artworks
-// PROTECTED
 const getArtwork = async (req, res, next) => {
   try {
     const artworkId = req.params.id;
@@ -93,9 +84,6 @@ const getArtwork = async (req, res, next) => {
   }
 };
 
-// ============================= GET ARTWORK BY CATEGORY
-// GET : api/artworks/categories/:category
-// PROTECTED
 const getCatArtworks = async (req, res, next) => {
   try {
     const { category } = req.params;
@@ -108,9 +96,6 @@ const getCatArtworks = async (req, res, next) => {
   }
 };
 
-// ============================= GET ARTWORK BY ARTIST
-// GET : api/artworks/artists/:id
-// PROTECTED
 const getArtistArtwork = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -131,7 +116,7 @@ const editArtwork = async (req, res, next) => {
     let updatedArtwork;
 
     if (!title || !category || description.length < 3) {
-      return next(new HttpError("All fields are required", 422));
+      return next(new HttpError("All fields are required", 418));
     }
 
     const artwork = await Artwork.findById(id);
@@ -154,7 +139,7 @@ const editArtwork = async (req, res, next) => {
       );
     } else {
       if (img.size > 2000000) {
-        return next(new HttpError("File is too large", 422));
+        return next(new HttpError("File is too large", 418));
       }
 
       fs.unlink(
@@ -189,7 +174,7 @@ const editArtwork = async (req, res, next) => {
     }
 
     if (!updatedArtwork) {
-      return next(new HttpError("Artwork update failed", 422));
+      return next(new HttpError("Artwork update failed", 418));
     }
 
     res.status(200).json(updatedArtwork);
@@ -198,9 +183,6 @@ const editArtwork = async (req, res, next) => {
   }
 };
 
-// ============================= DELETE ARTWORK
-// DELETE : api/artworks/:id
-// PROTECTED
 const deleteArtwork = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -232,7 +214,7 @@ const deleteArtwork = async (req, res, next) => {
     const deletedArtwork = await Artwork.findByIdAndDelete(id);
 
     if (!deletedArtwork) {
-      return next(new HttpError("Artwork deletion failed", 422));
+      return next(new HttpError("Artwork deletion failed", 418));
     }
 
     const artist = await Artist.findById(req.artist.id);
@@ -247,7 +229,7 @@ const deleteArtwork = async (req, res, next) => {
     });
 
     if (!updatedArtist) {
-      return next(new HttpError("Artist update failed", 422));
+      return next(new HttpError("Artist update failed", 418));
     }
 
     res.status(204).json();

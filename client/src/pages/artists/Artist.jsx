@@ -24,10 +24,12 @@ const Artist = ({artistId, createdAt}) => {
   
   return (
     <Link to={`/artists/${artistId}`}>
-        <div className='artist-avatar'>
-            <img className='avatar' src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${artist?.avatar}`} alt='' />
-            <h5>Artist: {artist.name} {artist.surname}</h5>
-            <p>Created at: {DateTime.now(createdAt).toFormat('MM-dd-yyyy')}</p>
+        <div className='vignette'>
+            <img className='artist-avatar' src={`${process.env.REACT_APP_ASSETS_URL}/uploads/${artist?.avatar}`} alt='' />
+            <div className='artist-desc'>
+              <h5>Artist: {artist.name} {artist.surname}</h5>
+              <p>Created at: {DateTime.now(createdAt).toFormat('MM-dd-yyyy')}</p>
+            </div>
         </div>
     </Link>
   )

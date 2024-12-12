@@ -1,23 +1,20 @@
-import React from 'react'
-import { Link } from "react-router"
-
+import React from "react";
+import { Link } from "react-router";
 
 const Categories = () => {
-    const categories = ['unclassyfied', 'painting', 'sculpture', 'video']
+  const categories = ["unclassified", "painting", "sculpture", "video"];
 
   return (
-    <div className='container'>
-        {
-            categories.map((cat) => {
-                return(
-                    <div>
-                        <Link to={`/artworks/categories/${cat}`}>{cat}</Link>
-                    </div>
-                )
-            })
-        }
+    <div className="page categories">
+      {categories.map((cat) => {
+        return (
+          <Link className="category" to={`/artworks/categories/${cat}`}>
+            {cat}
+          </Link>
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;
